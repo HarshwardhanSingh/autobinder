@@ -34,7 +34,7 @@ class AutoBindClass {
       'componentDidCatch',
     ];
     return klass.body.body.filter(body => {
-      return (lifeCycleMethods.indexOf(body.kind) === -1);
+      return (lifeCycleMethods.indexOf(body.key.name) === -1);
     });
   }
 
