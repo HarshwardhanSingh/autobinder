@@ -1,15 +1,19 @@
 {
-  "name": "auto-binder",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "name": "babel-plugin-auto-binder",
+  "version": "0.0.2",
+  "description": "A babel plugin to auto bind you class methods",
+  "main": "src/autobinder.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "babel plugin",
+    "autobind"
+  ],
+  "author": "Harshwardhan Rathore",
+  "license": "MIT",
   "devDependencies": {
-    "babel": "^6.23.0"
+    "babel": "^6.23.0",
+    "babel-plugin-transform-decorators": "^6.24.1"
   }
 }

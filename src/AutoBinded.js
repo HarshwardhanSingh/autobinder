@@ -6,14 +6,15 @@ class AutoBinded {
   process(klass) {
     const decorators = this.findautoBindDecorators(klass);
 
-    if (decorators.length) {
-      const ctor = this.findConstructor(klass);
+    // if (decorators.length) {
+      const ctor = this.getConstructor(klass);
       const args = this.getClassMethods(klass);
       this.prependAssignments(ctor, args);
-    }
+      this.deleteDecorators(klass, decorators);
+    // }
   }
 
-  findConstructor(klass) {
+  getConstructor(klass) {
     return klass.body.body.filter(body => {
       return body.kind === "constructor";
     })[0];
@@ -59,7 +60,16 @@ class AutoBinded {
 
   findautoBindDecorators(klass) {
     return (klass.decorators || []).filter(decorator => {
-      return decorator.expression.name === "autoBind";
+      return decorator.expression.name === "autobind";
+    });
+  }
+
+  deleteDecorators(klass, decorators) {
+    decorators.forEach((decorator) => {
+      const index = klass.decorators.indexOf(decorator);
+      if (index >= 0) {
+        klass.decorators.splice(index, 1);
+      }
     });
   }
 }
