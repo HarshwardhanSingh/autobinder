@@ -1,6 +1,6 @@
 {
   "name": "babel-plugin-auto-binder",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "A babel plugin to auto bind you class methods",
   "main": "index.js",
   "author": "Harshwardhan Rathore",
@@ -15,7 +15,7 @@
   "bugs": {
     "url": "https://github.com/HarshwardhanSingh/autobinder/issues"
   },
-  "files": ["index.js", "AutoBinded.js"],
+  "files": ["index.js", "AutoBindClass.js"],
   "repository": {
     "type": "git",
     "url": "https://github.com/HarshwardhanSingh/autobinder.git"

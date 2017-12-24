@@ -1,15 +1,16 @@
-class AutoBinded {
+class AutoBindClass {
   constructor(types) {
     this.types = types;
   }
 
   process(klass) {
-    const decorators = this.findautoBindDecorators(klass);
+    const decorators = this.findDecorators(klass);
     if (decorators.length) {
-      const ctor = this.getConstructor(klass);
+      const constructorMethod = this.getConstructor(klass);
       const args = this.getClassMethods(klass);
-      this.prependAssignments(ctor, args);
-      this.deleteDecorators(klass, decorators);
+
+      this.doAssignments(constructorMethod, args);
+      this.removeDecorators(klass, decorators);
     }
   }
 
@@ -37,8 +38,8 @@ class AutoBinded {
     });
   }
 
-  prependAssignments(ctor, args) {
-    const body = ctor.body.body;
+  doAssignments(constructorMethod, args) {
+    const body = constructorMethod.body.body;
     args
       .reverse()
       .forEach(arg => {
@@ -57,13 +58,13 @@ class AutoBinded {
     return this.types.expressionStatement(assignment);
   }
 
-  findautoBindDecorators(klass) {
+  findDecorators(klass) {
     return (klass.decorators || []).filter(decorator => {
       return decorator.expression.name === "autobind";
     });
   }
 
-  deleteDecorators(klass, decorators) {
+  removeDecorators(klass, decorators) {
     decorators.forEach((decorator) => {
       const index = klass.decorators.indexOf(decorator);
       if (index >= 0) {
@@ -73,4 +74,4 @@ class AutoBinded {
   }
 }
 
-module.exports = AutoBinded;
+module.exports = AutoBindClass;
