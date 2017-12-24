@@ -5,13 +5,12 @@ class AutoBinded {
 
   process(klass) {
     const decorators = this.findautoBindDecorators(klass);
-
-    // if (decorators.length) {
+    if (decorators.length) {
       const ctor = this.getConstructor(klass);
       const args = this.getClassMethods(klass);
       this.prependAssignments(ctor, args);
       this.deleteDecorators(klass, decorators);
-    // }
+    }
   }
 
   getConstructor(klass) {
@@ -73,3 +72,5 @@ class AutoBinded {
     });
   }
 }
+
+module.exports = AutoBinded;

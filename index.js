@@ -1,6 +1,6 @@
 const AutoBinded = require('./AutoBinded.js');
 
-module.exports = function({ types: t }) {
+module.exports = function({ types: t}) {
   return {
     visitor: {
       ClassDeclaration(path) {
