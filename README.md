@@ -1,6 +1,10 @@
 # babel-plugin-auto-binder
 [![Maintainability](https://api.codeclimate.com/v1/badges/33a25ae1b4b593afa94f/maintainability)](https://codeclimate.com/github/HarshwardhanSingh/autobinder/maintainability)  
 
+### Warning: Very alpha code, don't use in production just yet.
+
+#### If you are using and prefer using arrow functions then you don't need this plugin as the arrow function have the `this` context from the scope they are declared in.  
+
 Every time I write a new component method I have to bind in the constructor so that it can access `this`.  
 
 Example:
@@ -10,7 +14,7 @@ Now if you forget to bind your method, you will face very weird bugs which can b
 
 ## Getting Started
 
-#### Setting up
+### Setting up
 1. `npm i -D babel-plugin-auto-binder`
 2. `npm i -D babel-plugin-transform-decorators-legacy`
 3. Update your `.babelrc` configuration by adding
@@ -42,5 +46,3 @@ class App extends Component {
 ```
 
 and that's it!!
-
-### Warning: Very alpha code, don't use in production just yet.
