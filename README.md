@@ -5,6 +5,8 @@
 
 ### If you are using or prefer using arrow functions then you don't need this plugin as the arrow function have the `this` context from the scope they are declared in.    
 
+### This plugin binds your class methods in constructor only once, and not in the render, which is good because everytime you bind a function it returns a new function and since render gets triggered very frequently binding in render will create a lot of unnecessary binds.
+
 Every time I write a new component method I have to bind in the constructor so that it can access `this`.  
 
 Example:
@@ -35,14 +37,43 @@ class App extends Component {
     super();
   }
 
+  doStuff() {
+    //some api calls
+  }
+
   render() {
     return (
       <div>
-        Hello World
+        <SomeComponent onSubmit={this.doStuff} />
       </div>
     )
   }
 }
 ```
-
 and that's it!!
+
+The above input will get transformed to
+```
+class App extends Component {
+  constructor() {
+    super();
+
+    this.doStuff = this.doStuff.bind(this);
+  }
+
+  doStuff() {
+    //some api calls
+  }
+
+  render() {
+    return (
+      <div>
+        <SomeComponent onSubmit={this.doStuff} />
+      </div>
+    )
+  }
+}
+
+```
+
+
