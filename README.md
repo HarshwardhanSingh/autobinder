@@ -1,18 +1,18 @@
 # babel-plugin-auto-binder
 [![Maintainability](https://api.codeclimate.com/v1/badges/33a25ae1b4b593afa94f/maintainability)](https://codeclimate.com/github/HarshwardhanSingh/autobinder/maintainability)  
 
-### Warning: alpha code, don't use in production just yet.
-
-### If you are using or prefer using arrow functions then you don't need this plugin as the arrow function have the `this` context from the scope they are declared in.    
-
-### This plugin binds your class methods in constructor only once, and not in the render, which is good because everytime you bind a function it returns a new function and since render gets triggered very frequently binding in render will create a lot of unnecessary binds.
-
+## Inspiration:
 Every time I write a new component method I have to bind in the constructor so that it can access `this`.  
 
 Example:
 `this.doStuff = this.doStuff.bind(this);`
 
 Now if you forget to bind your method, you will face very weird bugs which can be frustating. `babel-plugin-auto-binder` will take care of this issue by doing this binding behind the scene so you just worry about the functionality.
+
+If you are using or prefer using arrow functions then you don't need this plugin as the arrow function have the `this` context from the scope they are declared in.    
+
+## Performance:
+This plugin binds your class methods (does not binds react lifecycle methods in React) only once in constructor which is a big performance plus.
 
 ## Getting Started
 
